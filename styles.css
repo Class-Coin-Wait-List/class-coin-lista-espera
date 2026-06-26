@@ -217,6 +217,7 @@ a { color: inherit; text-decoration: none; }
   margin: 12px 0 0;
 }
 
+.form-success[hidden] { display: none; }
 .form-success {
   display: flex;
   flex-direction: column;
