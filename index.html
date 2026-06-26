@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Workshop ao vivo · Economia na Sala de Aula | Class Coin</title>
+  <meta name="description" content="Workshop ao vivo e gratuito com o Prof. João Pedro: crie uma economia na sua sala de aula e transforme indisciplina em engajamento real. Entre na lista de espera." />
+
+  <!-- Open Graph / compartilhamento -->
+  <meta property="og:title" content="Cansado de brigar por atenção e disciplina todos os dias?" />
+  <meta property="og:description" content="Workshop ao vivo e gratuito: crie uma economia na sua sala de aula e faça seus alunos quererem participar. Vagas limitadas." />
+  <meta property="og:type" content="website" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- ============ HEADER ============ -->
+  <header class="site-header" id="topo">
+    <div class="container header-inner">
+      <a href="#topo" class="logo" aria-label="Class Coin">
+        <span class="logo-coin" aria-hidden="true">🪙</span>
+        <span class="logo-text">Class <span>Coin</span></span>
+      </a>
+      <a href="#inscricao" class="btn btn-ghost js-scroll-form">Entrar na lista</a>
+    </div>
+  </header>
+
+  <!-- ============ HERO ============ -->
+  <section class="hero" id="inscricao">
+    <div class="hero-overlay"></div>
+    <div class="container hero-inner">
+
+      <div class="hero-copy">
+        <span class="badge">📅 Julho 2026 · Vagas limitadas</span>
+        <h1 class="hero-title">
+          Cansado de <span class="hl">brigar por atenção</span> e disciplina todos os dias?
+        </h1>
+        <p class="hero-sub">
+          Descubra, no workshop ao vivo e gratuito com o <strong>Prof. João Pedro</strong>, como criar uma
+          <strong>economia na sua sala de aula</strong> e fazer seus alunos <em>quererem</em> participar.
+        </p>
+
+        <!-- ===== FORMULÁRIO ===== -->
+        <form class="form-card" id="waitlist-form" novalidate>
+          <h2 class="form-title">Entre para a lista de espera</h2>
+          <p class="form-desc">Garanta seu lugar e seja avisado em primeiro lugar.</p>
+
+          <div class="field">
+            <label for="nome">Nome completo</label>
+            <input type="text" id="nome" name="nome" placeholder="Seu nome" autocomplete="name" required />
+            <span class="error" data-error-for="nome"></span>
+          </div>
+
+          <div class="field">
+            <label for="email">E-mail</label>
+            <input type="email" id="email" name="email" placeholder="voce@email.com" autocomplete="email" required />
+            <span class="error" data-error-for="email"></span>
+          </div>
+
+          <div class="field">
+            <label for="whatsapp">WhatsApp</label>
+            <input type="tel" id="whatsapp" name="whatsapp" placeholder="(00) 00000-0000" inputmode="numeric" autocomplete="tel" required />
+            <span class="error" data-error-for="whatsapp"></span>
+          </div>
+
+          <!-- honeypot anti-spam -->
+          <input type="text" name="empresa" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true" />
+
+          <button type="submit" class="btn btn-primary btn-block">Quero entrar na lista</button>
+          <p class="form-note">100% online e ao vivo · Gratuito · Vagas limitadas</p>
+
+          <!-- estado de sucesso -->
+          <div class="form-success" id="form-success" hidden>
+            <span class="check" aria-hidden="true">✓</span>
+            <strong>Pronto! Você está na lista 🎉</strong>
+            <span class="success-sub">Redirecionando você para o WhatsApp…</span>
+          </div>
+        </form>
+      </div>
+
+      <div class="hero-figure">
+        <figure class="prof-card">
+          <img src="assets/prof-joao.jpg" alt="Prof. João Pedro Lacerda"
+               onerror="this.classList.add('img-missing');this.alt='';" />
+          <span class="prof-fallback" aria-hidden="true">JP</span>
+          <figcaption>
+            <strong>Prof. João Pedro Lacerda</strong>
+            <span>Pioneiro do método Class Coin</span>
+          </figcaption>
+        </figure>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============ DORES ============ -->
+  <section class="section pains reveal" aria-labelledby="pains-title">
+    <div class="container">
+      <p class="eyebrow">Para professores inovadores</p>
+      <h2 id="pains-title" class="section-title">Você se identifica com isso?</h2>
+      <p class="section-sub">Se pelo menos um desses pontos é a sua realidade, este workshop é para você.</p>
+
+      <ul class="pain-list">
+        <li><span class="pain-x">✕</span> Indisciplina e conversas paralelas que tomam conta da aula</li>
+        <li><span class="pain-x">✕</span> Falta de interesse e alunos desmotivados</li>
+        <li><span class="pain-x">✕</span> Dificuldade no manejo e no controle da sala</li>
+        <li><span class="pain-x">✕</span> Alunos desconectados do conteúdo e da turma</li>
+        <li><span class="pain-x">✕</span> Exaustão com a preparação de aulas e atividades</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ SOLUÇÃO ============ -->
+  <section class="section solution reveal" aria-labelledby="sol-title">
+    <div class="container">
+      <p class="eyebrow">A solução</p>
+      <h2 id="sol-title" class="section-title">Crie uma economia real na sua sala de aula</h2>
+      <p class="section-sub">
+        Neste workshop, o Prof. João abre a “caixa-preta” das aulas dele e te entrega o passo a passo validado
+        para dominar a plataforma rapidamente e <strong>começar agosto com o pé direito</strong>.
+      </p>
+
+      <div class="cards-grid">
+        <article class="card">
+          <span class="card-tag tag-basic">Básico</span>
+          <h3>Bônus &amp; Multas</h3>
+          <p>Recompense bons comportamentos e aplique consequências de forma justa, sem brigar por atenção.</p>
+        </article>
+        <article class="card">
+          <span class="card-tag tag-basic">Básico</span>
+          <h3>Lojinha</h3>
+          <p>Os alunos gastam as moedas conquistadas em recompensas reais da sala. Engajamento na prática.</p>
+        </article>
+        <article class="card">
+          <span class="card-tag tag-360">360°</span>
+          <h3>Mini-LinkedIn</h3>
+          <p>Cada aluno constrói sua reputação e trajetória dentro da turma, como num mundo profissional real.</p>
+        </article>
+        <article class="card">
+          <span class="card-tag tag-360">360°</span>
+          <h3>Boletos</h3>
+          <p>Aluguéis e taxas que simulam a economia real e ensinam responsabilidade financeira de verdade.</p>
+        </article>
+      </div>
+
+      <div class="solution-cta">
+        <a href="#inscricao" class="btn btn-primary js-scroll-form">Quero aprender o método</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ GUIA / AUTORIDADE ============ -->
+  <section class="section guide reveal" aria-labelledby="guide-title">
+    <div class="container guide-inner">
+      <div class="guide-figure">
+        <figure class="prof-card prof-card--alt">
+          <img src="assets/prof-joao.jpg" alt="Prof. João Pedro Lacerda"
+               onerror="this.classList.add('img-missing');this.alt='';" />
+          <span class="prof-fallback" aria-hidden="true">JP</span>
+        </figure>
+      </div>
+      <div class="guide-copy">
+        <p class="eyebrow">Quem será o seu guia</p>
+        <h2 id="guide-title" class="section-title">Prof. João Pedro Lacerda</h2>
+        <p>
+          Professor com mais de <strong>10 anos de experiência real em sala de aula</strong>. Lecionando
+          Matemática Bilíngue, Educação Financeira e Business Management (IBDP), ele conhece de perto a
+          realidade, a exaustão e os desafios diários de manter a disciplina e o engajamento de uma turma.
+        </p>
+        <p>
+          “Eu não estou aqui para te passar teorias pedagógicas que não funcionam na prática. Fui o pioneiro
+          na aplicação do método Class Coin: aplico as estratégias de simulação de economia real com meus
+          alunos desde o início de 2025 e sou o usuário número um da plataforma ao longo de todo este ano de 2026.”
+        </p>
+        <ul class="seals">
+          <li>✔ +10 anos em sala de aula</li>
+          <li>✔ Matemática Bilíngue · Educação Financeira · Business Management (IBDP)</li>
+          <li>✔ Pioneiro do método Class Coin (desde 2025)</li>
+          <li>✔ Usuário nº 1 da plataforma em 2026</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PROVA SOCIAL ============ -->
+  <section class="section proof reveal" aria-labelledby="proof-title">
+    <div class="container">
+      <div class="stats">
+        <div class="stat">
+          <span class="stat-num">+160</span>
+          <span class="stat-label">alunos com desempenho transformado em sala de aula</span>
+        </div>
+        <div class="stat">
+          <span class="stat-num">+10</span>
+          <span class="stat-label">professores já utilizando a Class Coin</span>
+        </div>
+      </div>
+
+      <h2 id="proof-title" class="section-title">O que dizem nossos educadores</h2>
+      <div class="testimonials">
+        <figure class="quote">
+          <blockquote>“…a turma toda fica quieta, eles voltam para o que eles estão fazendo, para o que eles devem fazer, economiza voz, economiza tempo, aumenta engajamento…”</blockquote>
+          <figcaption>Professora Juliana · Inglês</figcaption>
+        </figure>
+        <figure class="quote">
+          <blockquote>“Todas as minhas aulas são conectadas à Economia na Sala de Aula. Eu consigo explorar diversos temas difíceis na teoria e na prática.”</blockquote>
+          <figcaption>Professor João Pedro · Educação Financeira</figcaption>
+        </figure>
+        <figure class="quote">
+          <blockquote>“Funciona muito na escola pública a plataforma. Todas as turmas que tenho gostaram. Muito legal. Salvou a aula!”</blockquote>
+          <figcaption>Professor Alan · Matemática</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CTA FINAL ============ -->
+  <section class="section final-cta reveal">
+    <div class="container final-cta-inner">
+      <h2>As vagas são limitadas. Garanta a sua.</h2>
+      <p>Entre para a lista de espera e seja avisado em primeiro lugar quando as inscrições abrirem.</p>
+      <a href="#inscricao" class="btn btn-light js-scroll-form">Quero entrar na lista de espera</a>
+    </div>
+  </section>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <a href="#topo" class="logo logo--footer">
+        <span class="logo-coin" aria-hidden="true">🪙</span>
+        <span class="logo-text">Class <span>Coin</span></span>
+      </a>
+      <p class="footer-tag">Transformando a educação através da economia na sala de aula.</p>
+      <p class="footer-copy">© 2026 Class Coin. Todos os direitos reservados.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
