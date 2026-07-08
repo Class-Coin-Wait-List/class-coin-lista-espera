@@ -1,5 +1,5 @@
 /* ============================================================
-   Class Coin · Lista de Espera — comportamento
+   Class Coin · Lista de Espera: comportamento
    ============================================================ */
 
 /* ---------- CONFIG (edite aqui) -------------------------------
@@ -149,7 +149,7 @@ function initForm() {
     if (url) {
       setTimeout(() => { window.location.href = url; }, CONFIG.REDIRECT_DELAY_MS);
     } else {
-      // sem WhatsApp configurado — apenas confirma o cadastro
+      // sem WhatsApp configurado: apenas confirma o cadastro
       $(".success-sub", success).textContent = "Cadastro recebido! Em breve entraremos em contato.";
       submitBtn.disabled = false;
       submitBtn.textContent = "Quero entrar na lista";
@@ -157,13 +157,13 @@ function initForm() {
   });
 }
 
-/* ---------- Scroll suave até o formulário ---------- */
+/* ---------- Scroll suave até o formulário (seção final) ---------- */
 function initScrollToForm() {
   $$(".js-scroll-form").forEach((el) => {
     el.addEventListener("click", (e) => {
       e.preventDefault();
-      const hero = $("#inscricao");
-      if (hero) hero.scrollIntoView({ behavior: "smooth", block: "start" });
+      const signup = $("#inscricao");
+      if (signup) signup.scrollIntoView({ behavior: "smooth", block: "start" });
       setTimeout(() => { const n = $("#nome"); if (n) n.focus({ preventScroll: true }); }, 500);
     });
   });
