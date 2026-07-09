@@ -20,10 +20,11 @@
       Deixe "" para não enviar a lugar nenhum.
 --------------------------------------------------------------- */
 const CONFIG = {
-  WHATSAPP_GROUP_URL: "https://chat.whatsapp.com/COLE_SEU_LINK_AQUI",
+  WHATSAPP_GROUP_URL: "https://chat.whatsapp.com/ChyAy0wHHK011LGHVvOEhJ",
   WHATSAPP_NUMBER: "",          // ex.: "5511999999999" (usado só se GROUP_URL ficar vazio)
   LEAD_ENDPOINT: "https://script.google.com/macros/s/AKfycbwW5i5BCh06am9Z3V8PCseIt-RZdpVzZNwsXlHRScfco3M2jtkeJ5Y3pbx7lfyKwelDpA/exec", // Planilha Google (Apps Script)
-  REDIRECT_DELAY_MS: 1500       // tempo da mensagem de sucesso antes de redirecionar
+  REDIRECT_DELAY_MS: 2500,      // tempo da mensagem de sucesso antes de redirecionar
+  WORKSHOP_DATE: "2026-08-02T20:00:00-03:00" // data/hora da aula (Brasília)
 };
 
 /* ---------- Helpers ---------- */
@@ -141,20 +142,99 @@ function initForm() {
 
     await sendLead(lead);
 
-    // mostra sucesso
+    // esconde os campos e mostra o estado de sucesso
+    $$(".field", form).forEach((f) => { f.style.display = "none"; });
+    submitBtn.style.display = "none";
+    const note = $(".form-note", form);
+    if (note) note.style.display = "none";
     success.hidden = false;
     success.scrollIntoView({ behavior: "smooth", block: "nearest" });
 
     const url = buildWhatsAppUrl(lead);
+    const waBtn = $("#whatsapp-btn");
     if (url) {
+      if (waBtn) waBtn.href = url;
       setTimeout(() => { window.location.href = url; }, CONFIG.REDIRECT_DELAY_MS);
     } else {
       // sem WhatsApp configurado: apenas confirma o cadastro
-      $(".success-sub", success).textContent = "Cadastro recebido! Em breve entraremos em contato.";
-      submitBtn.disabled = false;
-      submitBtn.textContent = "Quero entrar na lista";
+      $(".success-step", success).textContent = "Cadastro recebido!";
+      $(".success-sub", success).textContent = "Em breve entraremos em contato.";
+      if (waBtn) waBtn.style.display = "none";
     }
   });
+}
+
+/* ---------- Contagem regressiva até a aula ---------- */
+function initCountdown() {
+  const box = $("#countdown");
+  if (!box) return;
+  const target = new Date(CONFIG.WORKSHOP_DATE).getTime();
+  const slots = {
+    days: $('[data-cd="days"]', box),
+    hours: $('[data-cd="hours"]', box),
+    minutes: $('[data-cd="minutes"]', box),
+    seconds: $('[data-cd="seconds"]', box)
+  };
+  const pad = (n) => String(n).padStart(2, "0");
+
+  function tick() {
+    const diff = target - Date.now();
+    if (diff <= 0) {
+      box.innerHTML = '<span class="countdown-label">O workshop ao vivo começou!</span>';
+      clearInterval(timer);
+      return;
+    }
+    const d = Math.floor(diff / 86400000);
+    const h = Math.floor((diff % 86400000) / 3600000);
+    const m = Math.floor((diff % 3600000) / 60000);
+    const s = Math.floor((diff % 60000) / 1000);
+    if (slots.days) slots.days.textContent = pad(d);
+    if (slots.hours) slots.hours.textContent = pad(h);
+    if (slots.minutes) slots.minutes.textContent = pad(m);
+    if (slots.seconds) slots.seconds.textContent = pad(s);
+  }
+
+  tick();
+  const timer = setInterval(tick, 1000);
+}
+
+/* ---------- Carrossel de resultados (auto) ---------- */
+function initResultsCarousel() {
+  const carousel = $("#results-carousel");
+  if (!carousel) return;
+  const track = $(".results-track", carousel);
+  const slides = $$(".result-slide", track);
+  const dotsWrap = $("#results-dots");
+  if (!track || slides.length <= 1) return;
+
+  let index = 0;
+  let timer = null;
+  const INTERVAL = 3000;
+
+  // cria os indicadores
+  const dots = slides.map((_, i) => {
+    const b = document.createElement("button");
+    b.type = "button";
+    b.setAttribute("aria-label", `Ir para o resultado ${i + 1}`);
+    if (dotsWrap) dotsWrap.appendChild(b);
+    b.addEventListener("click", () => { go(i); restart(); });
+    return b;
+  });
+
+  function go(i) {
+    index = (i + slides.length) % slides.length;
+    track.style.transform = `translateX(-${index * 100}%)`;
+    dots.forEach((d, di) => d.classList.toggle("active", di === index));
+  }
+  function next() { go(index + 1); }
+  function start() { timer = setInterval(next, INTERVAL); }
+  function stop() { if (timer) clearInterval(timer); }
+  function restart() { stop(); start(); }
+
+  go(0);
+  start();
+  carousel.addEventListener("mouseenter", stop);
+  carousel.addEventListener("mouseleave", start);
 }
 
 /* ---------- Scroll suave até o formulário (seção final) ---------- */
@@ -192,4 +272,6 @@ document.addEventListener("DOMContentLoaded", () => {
   initForm();
   initScrollToForm();
   initReveal();
+  initCountdown();
+  initResultsCarousel();
 });
