@@ -198,44 +198,7 @@ function initCountdown() {
   const timer = setInterval(tick, 1000);
 }
 
-/* ---------- Carrossel de resultados (auto) ---------- */
-function initResultsCarousel() {
-  const carousel = $("#results-carousel");
-  if (!carousel) return;
-  const track = $(".results-track", carousel);
-  const slides = $$(".result-slide", track);
-  const dotsWrap = $("#results-dots");
-  if (!track || slides.length <= 1) return;
-
-  let index = 0;
-  let timer = null;
-  const INTERVAL = 3000;
-
-  // cria os indicadores
-  const dots = slides.map((_, i) => {
-    const b = document.createElement("button");
-    b.type = "button";
-    b.setAttribute("aria-label", `Ir para o resultado ${i + 1}`);
-    if (dotsWrap) dotsWrap.appendChild(b);
-    b.addEventListener("click", () => { go(i); restart(); });
-    return b;
-  });
-
-  function go(i) {
-    index = (i + slides.length) % slides.length;
-    track.style.transform = `translateX(-${index * 100}%)`;
-    dots.forEach((d, di) => d.classList.toggle("active", di === index));
-  }
-  function next() { go(index + 1); }
-  function start() { timer = setInterval(next, INTERVAL); }
-  function stop() { if (timer) clearInterval(timer); }
-  function restart() { stop(); start(); }
-
-  go(0);
-  start();
-  carousel.addEventListener("mouseenter", stop);
-  carousel.addEventListener("mouseleave", start);
-}
+/* Resultados: a rolagem contínua é feita 100% em CSS (animação marquee) */
 
 /* ---------- Scroll suave até o formulário (seção final) ---------- */
 function initScrollToForm() {
@@ -273,5 +236,4 @@ document.addEventListener("DOMContentLoaded", () => {
   initScrollToForm();
   initReveal();
   initCountdown();
-  initResultsCarousel();
 });

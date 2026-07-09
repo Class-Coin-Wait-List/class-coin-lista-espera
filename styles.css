@@ -459,7 +459,7 @@ a { color: inherit; text-decoration: none; }
 .aud-mark--no::before { transform: rotate(45deg); }
 .aud-mark--no::after  { transform: rotate(-45deg); }
 
-/* ---------- Resultado (carrossel) ---------- */
+/* ---------- Resultado (rolagem contínua) ---------- */
 .results { max-width: 960px; margin: 40px auto 0; }
 .results-title {
   text-align: center;
@@ -467,46 +467,45 @@ a { color: inherit; text-decoration: none; }
   color: var(--brand-deep);
   margin: 0 0 18px;
 }
-.results-carousel {
-  position: relative;
+.results-marquee {
   overflow: hidden;
   border-radius: var(--radius-lg);
   background: linear-gradient(135deg, var(--brand-dark), var(--brand));
   box-shadow: var(--shadow);
+  padding: 38px 0;
 }
-.results-track {
+.marquee-track {
   display: flex;
-  transition: transform .6s cubic-bezier(.4, 0, .2, 1);
+  width: max-content;
+  animation: marquee 36s linear infinite;
 }
-.result-slide {
-  min-width: 100%;
-  padding: 52px 24px;
-  display: grid;
-  place-items: center;
-  text-align: center;
+.results-marquee:hover .marquee-track { animation-play-state: paused; }
+.marquee-group {
+  display: flex;
+  align-items: center;
+  gap: 44px;
+  padding-right: 44px;
 }
-.result-slide span {
+.marquee-group span {
   color: #fff;
   font-family: "Poppins", sans-serif;
-  font-size: clamp(1.3rem, 3vw, 2rem);
+  font-size: clamp(1.15rem, 2.4vw, 1.6rem);
   font-weight: 700;
+  white-space: nowrap;
 }
-.results-dots {
-  display: flex;
-  justify-content: center;
-  gap: 8px;
-  padding: 0 0 22px;
+.marquee-dot {
+  flex-shrink: 0;
+  width: 9px; height: 9px;
+  border-radius: 50%;
+  background: var(--brand-lime);
 }
-.results-dots button {
-  width: 8px; height: 8px;
-  padding: 0;
-  border: none;
-  border-radius: 999px;
-  background: rgba(255,255,255,.4);
-  cursor: pointer;
-  transition: width .3s ease, background .3s ease;
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
 }
-.results-dots button.active { width: 22px; background: var(--brand-lime); }
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track { animation: none; }
+}
 
 /* ---------- Guia / autoridade ---------- */
 .guide { background: var(--surface); }
