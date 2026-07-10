@@ -36,7 +36,11 @@ const onlyDigits = (v) => v.replace(/\D/g, "");
 
 /* ---------- Máscara leve de WhatsApp (BR) ---------- */
 function maskPhone(value) {
-  const d = onlyDigits(value).slice(0, 11);
+  let d = onlyDigits(value);
+  // preenchimento automático costuma incluir o código do país (+55);
+  // só remove quando sobram dígitos além de DDD + número
+  if (d.length > 11 && d.startsWith("55")) d = d.slice(2);
+  d = d.slice(0, 11);
   if (d.length <= 2) return d.length ? `(${d}` : "";
   if (d.length <= 6) return `(${d.slice(0, 2)}) ${d.slice(2)}`;
   if (d.length <= 10) return `(${d.slice(0, 2)}) ${d.slice(2, 6)}-${d.slice(6)}`;
@@ -122,6 +126,9 @@ function initForm() {
 
     // honeypot anti-spam
     if (form.empresa && form.empresa.value.trim() !== "") return;
+
+    // normaliza o WhatsApp (autofill pode não disparar o evento de input)
+    form.whatsapp.value = maskPhone(form.whatsapp.value);
 
     if (!validate(form)) {
       const firstInvalid = $(".invalid", form);
