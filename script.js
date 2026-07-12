@@ -149,6 +149,10 @@ function initForm() {
 
     await sendLead(lead);
 
+    // dispara a conversão para o GTM (usado pelo Pixel da Meta: evento Lead)
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({ event: "lead_workshop" });
+
     // esconde os campos e mostra o estado de sucesso
     $$(".field", form).forEach((f) => { f.style.display = "none"; });
     submitBtn.style.display = "none";
